@@ -8,7 +8,8 @@ import com.badlogic.gdx.utils.Array;
  * Created by Alexander on 01.03.17.
  */
 
-public class Bullet {
+public class Bullet extends main
+{
     Texture bulletImage;
 
     Array<Rectangle> bullet;
