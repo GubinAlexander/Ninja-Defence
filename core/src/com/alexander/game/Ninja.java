@@ -24,11 +24,12 @@ public class Ninja {
 
     SpriteBatch batch;
 
-    public void create () {
+    public void create() {
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
+
         touchPos = new Vector3();
 
         ninjaImage = new Texture("Ninja.png");
@@ -40,7 +41,7 @@ public class Ninja {
         Ninja.height = 64;
     }
 
-    public void render(){
+    public void render() {
         camera.update();
         batch.setProjectionMatrix(camera.combined);
 
@@ -48,19 +49,31 @@ public class Ninja {
         batch.draw(ninjaImage, Ninja.x, Ninja.y);
         batch.end();
 
-        if (Gdx.input.isTouched()){
+        if (Gdx.input.isTouched()) {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
-            Ninja.y = touchPos.y - 64/2;
+            Ninja.y = touchPos.y - 64 / 2;
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) Ninja.y -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) Ninja.y += 200 * Gdx.graphics.getDeltaTime();
+        //if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){Ninja.y -= 500 * Gdx.graphics.getDeltaTime();
 
+        //}
+        //if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) Ninja.y += 500 * Gdx.graphics.getDeltaTime();
+
+
+        while (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            Ninja.y -= 350 * Gdx.graphics.getDeltaTime();
+            if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) break;
+        }
+        while (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            Ninja.y += 350 * Gdx.graphics.getDeltaTime();
+            if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) ) break;
+        }
         if (Ninja.y < 0) Ninja.y = 0;
         if (Ninja.y > 480 - 40) Ninja.y = 480 - 40;
-
     }
+
+
 
     public void dispose(){
         ninjaImage.dispose();

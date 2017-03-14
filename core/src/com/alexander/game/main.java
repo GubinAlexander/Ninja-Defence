@@ -17,16 +17,17 @@ import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 
 public class main extends ApplicationAdapter {
 
-	OrthographicCamera camera;
 	SpriteBatch batch;
-
 	Enemy enemy;
 	Ninja ninja;
 
 	@Override
 	public void create () {
+
 	ninja = new Ninja();
 	ninja.create();
+
+	enemy = new Enemy();
 	}
 
 
@@ -36,22 +37,15 @@ public class main extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		ninja.render();
-
-
-
-
+		enemy.render();
 	}
 	
 	@Override
 	public void dispose () {
 		ninja.dispose();
 		batch.dispose();
+		enemy.dispose();
 	}
-
-
-
-
-
 }
 
 
