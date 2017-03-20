@@ -62,10 +62,7 @@ public class Bullet extends main
             SpawnBullet();
     }
     Iterator<Rectangle> Iter =  bullets.iterator();
-    while(Iter.hasNext()){
 
-
-}
 
 
     public void dispose() {
