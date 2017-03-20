@@ -35,10 +35,6 @@ public class Bullet extends main
         camera.setToOrtho(false, 800, 480);
 
         bulletImage =  new Texture("bullet.png");
-
-
-
-
     }
 
     public void SpawnBullet() {
