@@ -49,7 +49,7 @@ public class Enemy
     }
 
 
-    public  void render(){
+    public  void render() {
         camera.update();
 
         batch.begin();
@@ -59,7 +59,7 @@ public class Enemy
         }
         batch.end();
 
-        if (TimeUtils.nanoTime() - lastEnemyTime > 10000000)
+        if (TimeUtils.nanoTime() - lastEnemyTime > 10)
             SpawnEnemys();
         Iterator<Rectangle> iter = enemys.iterator();
         while (iter.hasNext()) {
@@ -67,8 +67,10 @@ public class Enemy
             enemy.x -= 200 * Gdx.graphics.getDeltaTime();
             if (enemy.x - 64 < 0)
                 iter.remove();
+
         }
     }
+
 
 
     public void dispose(){

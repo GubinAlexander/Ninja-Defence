@@ -23,11 +23,10 @@ public class main extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+		ninja = new Ninja();
+		ninja.create();
 
-	ninja = new Ninja();
-	ninja.create();
-
-	enemy = new Enemy();
+		enemy = new Enemy();
 	}
 
 

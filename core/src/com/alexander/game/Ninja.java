@@ -76,6 +76,7 @@ public class Ninja {
 
 
     public void dispose(){
+        batch.dispose();
         ninjaImage.dispose();
 
     }
