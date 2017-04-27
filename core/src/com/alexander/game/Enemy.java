@@ -15,63 +15,55 @@ import java.util.Iterator;
  * Created by Alexander on 01.03.17.
  */
 
-public class Enemy
-{
+public class Enemy{
     OrthographicCamera camera;
-    SpriteBatch batch;
-    Texture enemyImage;
+    Texture EnemyTexture;
     Array<Rectangle> enemys;
+    public Texture getEnemyTexture() {
+        return EnemyTexture;
+    }
     long lastEnemyTime;
 
-    public Enemy(){
-        batch = new SpriteBatch();
+    public long getLastEnemyTime() {
+        return lastEnemyTime;
+    }
 
+    public void setLastEnemyTime(long lastEnemyTime) {
+        this.lastEnemyTime = lastEnemyTime;
+    }
+
+    public Array<Rectangle> getEnemys() {
+        return enemys;
+    }
+
+    public void setEnemys(Array<Rectangle> enemys) {
+        this.enemys = enemys;
+    }
+
+    public void setEnemyTexture(Texture enemyTexture) {
+        EnemyTexture = enemyTexture;
+    }
+
+    public Enemy(){
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 600);
-
-        enemyImage = new Texture("Enemy.png");
-
+        EnemyTexture = new Texture("Enemy.png");
         enemys = new Array<Rectangle>();
     }
 
     public void SpawnEnemys(){
         Rectangle enemy = new Rectangle();
-
-        enemy.y = MathUtils.random(0, 480 + 64);
+        enemy.y = MathUtils.random(0, 480 + 84);
         enemy.x = 800;
-
-        enemy.width = 64;
-        enemy.height = 64;
-
+        enemy.width = 14;
+        enemy.height = 32;
         enemys.add(enemy);
-
         lastEnemyTime = TimeUtils.nanoTime();
-    }
 
+    }
 
     public  void render() {
-        camera.update();
-
-        batch.begin();
-        batch.setProjectionMatrix(camera.combined);
-        for (Rectangle enemy : enemys) {
-            batch.draw(enemyImage, enemy.x, enemy.y);
-        }
-        batch.end();
-
-        if (TimeUtils.nanoTime() - lastEnemyTime > 10)
-            SpawnEnemys();
-        Iterator<Rectangle> iter = enemys.iterator();
-        while (iter.hasNext()) {
-            Rectangle enemy = iter.next();
-            enemy.x -= 200 * Gdx.graphics.getDeltaTime();
-            if (enemy.x - 64 < 0)
-                iter.remove();
-
-        }
     }
-
-
 
     public void dispose(){
     }

@@ -15,72 +15,55 @@ import com.badlogic.gdx.math.Vector3;
 public class Ninja {
 
     Vector3 touchPos;
-
-    OrthographicCamera camera;
-
     Texture ninjaImage;
+    Rectangle ninja;
 
-    Rectangle Ninja;
-
-    SpriteBatch batch;
-
-    public void create() {
-        batch = new SpriteBatch();
-
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
-
+    public Ninja() {
         touchPos = new Vector3();
-
         ninjaImage = new Texture("Ninja.png");
+        ninja = new Rectangle(touchPos.x,touchPos.y,ninjaImage.getWidth(),ninjaImage.getHeight());
+        ninja.x = ((1000 - 940)) - 64 / 2;
+        ninja.y = 200;
+        ninja.width = 16;
+        ninja.height = 32;
+    }
 
-        Ninja = new Rectangle();
-        Ninja.x = ((800 - 740)) - 64 / 2;
-        Ninja.y = 200;
-        Ninja.width = 64;
-        Ninja.height = 64;
+    public Texture getNinjaImage() {
+        return ninjaImage;
+    }
+
+    public void setNinjaImage(Texture ninjaImage) {
+        this.ninjaImage = ninjaImage;
+    }
+
+    public Rectangle getNinja() {
+        return ninja;
+    }
+
+    public void setNinja(Rectangle ninja) {
+        this.ninja = ninja;
+    }
+
+    public Vector3 getTouchPos() {
+        return touchPos;
+    }
+
+    public void setTouchPos(Vector3 touchPos) {
+        this.touchPos = touchPos;
     }
 
     public void render() {
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
-
-        batch.begin();
-        batch.draw(ninjaImage, Ninja.x, Ninja.y);
-        batch.end();
-
-        if (Gdx.input.isTouched()) {
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(touchPos);
-            Ninja.y = touchPos.y - 64 / 2;
-        }
-
-        //if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){Ninja.y -= 500 * Gdx.graphics.getDeltaTime();
-
-        //}
-        //if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) Ninja.y += 500 * Gdx.graphics.getDeltaTime();
 
 
-        while (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            Ninja.y -= 350 * Gdx.graphics.getDeltaTime();
-            if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) break;
-        }
-        while (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            Ninja.y += 350 * Gdx.graphics.getDeltaTime();
-            if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) ) break;
-        }
-        if (Ninja.y < 0) Ninja.y = 0;
-        if (Ninja.y > 480 - 40) Ninja.y = 480 - 40;
+
     }
 
-
-
     public void dispose(){
-        batch.dispose();
         ninjaImage.dispose();
 
     }
 }
+
 
 
 

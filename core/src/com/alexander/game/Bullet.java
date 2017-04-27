@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g3d.particles.ParticleShader;
 import com.badlogic.gdx.graphics.glutils.IndexArray;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Iterator;
 
@@ -27,7 +28,7 @@ public class Bullet extends main
 
     Array<Rectangle> bullets;
 
-    private long _lastBulletTime;
+    long _lastBulletTime;
 
     public void Bullet(){
         batch =  new SpriteBatch();
@@ -41,8 +42,8 @@ public class Bullet extends main
 
         Rectangle bullet = new Rectangle();
 
-        bullet.x = ninja.Ninja.x;
-        bullet.y = ninja.Ninja.y;
+        bullet.x = newNinja.ninja.x;
+        bullet.y = newNinja.ninja.y;
 
         bullet.width = 64;
         bullet.height = 64;
@@ -50,18 +51,13 @@ public class Bullet extends main
         bullets.add(bullet);
     }
 
-    public void render(){
+    public void render() {
         camera.update();
-        batch.setProjectionMatrix(camera.combined);
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-            SpawnBullet();
+        batch.begin();
     }
-    Iterator<Rectangle> Iter =  bullets.iterator();
-
-
 
     public void dispose() {
         bulletImage.dispose();
+
     }
 }
